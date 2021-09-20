@@ -25,7 +25,7 @@ class GameViewController: UIViewController {
     
     weak var gameSessionDelegate: GameSessionDelegate?
     
-    private var endGame: Bool = true
+    private var didEndGame: Bool = true
     
     var question: [Question] = [
         Question(question: "Сколько 2+2",
@@ -85,27 +85,22 @@ class GameViewController: UIViewController {
     
     
     @IBAction func answerButtonTouchDown(_ sender: Any) {
-        endGame = true
+        didEndGame = true
         zip(answerRadioButtoms, question[questionIndex].answer).forEach{
             if $0.isSelected, $1.correct {
-                endGame = false
+                didEndGame = false
                 clearRadioButtoms()
                 questionIndex += 1
                 self.gameSessionDelegate?.addResult(Date(), 1)
-//                self.questionViewResultDelegate?.didEndGame(self, withResult: questionIndex)
                 if questionIndex <= question.count - 1 {
                     showQuestion(questionIndex)
                 } else {
-                    gameSession.endGame()
-                    self.questionViewResultDelegate?.didEndGame(self, withResult: questionIndex)
-                    self.dismiss(animated: true, completion: nil)
+                    endGame()
                 }
             }
         }
-        if endGame {
-            gameSession.endGame()
-            self.questionViewResultDelegate?.didEndGame(self, withResult: questionIndex)
-            self.dismiss(animated: true, completion: nil)
+        if didEndGame {
+            endGame()
         }
     }
     
@@ -135,6 +130,12 @@ class GameViewController: UIViewController {
         let answerRadioButtoms: [CheckBox] = [answerRadioButtom1!,answerRadioButtom2!,answerRadioButtom3!]
         checkBox.alternateButton = answerRadioButtoms
         checkBox.unselectAlternateButtons()
+    }
+    
+    private func endGame() {
+        gameSession.endGame()
+        self.questionViewResultDelegate?.didEndGame(self, withResult: questionIndex)
+        self.dismiss(animated: true, completion: nil)
     }
     
     

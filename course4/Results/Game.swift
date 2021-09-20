@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct Record {
+struct Record: Codable {
     let date: Date
-    let value: Int
+    let totalQuestions: Int
+    let answerQuestions: Int
 }
 
 class Game {
@@ -17,29 +18,33 @@ class Game {
     private(set) var totalQuestions: Int = 0
     private(set) var answerQuestions: Int = 0
     private(set) var records: [Record] = []
+    private let careTaker = CareTaker()
     
     var gameSession: GameSession?
     
-    private init () {}
+    private init () {
+        records = careTaker.loadGame() ?? []
+    }
     
     static let shared = Game()
     
     func beginGame(totalQuestions questions: Int) {
-        self.records = []
         self.answerQuestions = 0
         self.totalQuestions = questions
     }
     
     func endGame() {
-        if let gameSessionRecords = gameSession?.records {
-            self.records = gameSessionRecords
-            self.answerQuestions = gameSessionRecords.count
+        if let gameSessionResults = gameSession?.results {
+            self.answerQuestions = gameSessionResults
+            let record = Record(date: Date(), totalQuestions: self.totalQuestions, answerQuestions: self.answerQuestions)
+            addRecord(record)
+            careTaker.saveGame(records: records)
+            
         }
     }
     
     func addRecord(_ record: Record) {
         self.records.append(record)
-        self.answerQuestions += 1
     }
     
     func clearRecord() {

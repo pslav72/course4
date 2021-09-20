@@ -14,8 +14,6 @@ class RecordsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Game.shared.records.count \(Game.shared.records.count)")
-//        print("Game.shared.records.count \(Game.shared.gameSession?.records.count)")
     }
     
 }
@@ -46,9 +44,7 @@ extension RecordsViewController: UITableViewDataSource {
         )
         
         cell.textLabel?.text = localizedDate
-        cell.detailTextLabel?.text = "\(record.value)"
-//        cell.textLabel?.text = "localizedDate"
-//        cell.detailTextLabel?.text = "record.value"
+        cell.detailTextLabel?.text = "\(record.answerQuestions)/\(record.totalQuestions)"
     }
     
 }

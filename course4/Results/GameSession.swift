@@ -12,25 +12,20 @@ protocol GameSessionDelegate: AnyObject {
 }
 
 class GameSession {
-    var records: [Record] = []
     var results: Int = 0
 }
 
 extension GameSession: GameSessionDelegate {
 
     func addResult(_ date: Date, _ value: Int) {
-        let record = Record(date: date, value: value)
-        records.append(record)
-        print(records)
+        self.results += 1
     }
     
     func beginGame(totalQuestions questions: Int) {
-        self.records = []
         Game.shared.beginGame(totalQuestions: questions)
     }
     
     func endGame() {
         Game.shared.endGame()
-        self.records = []
     }
 }
