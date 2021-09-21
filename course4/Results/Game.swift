@@ -11,6 +11,7 @@ struct Record: Codable {
     let date: Date
     let totalQuestions: Int
     let answerQuestions: Int
+    let gameResults: [GameResults]
 }
 
 class Game {
@@ -34,9 +35,9 @@ class Game {
     }
     
     func endGame() {
-        if let gameSessionResults = gameSession?.results {
-            self.answerQuestions = gameSessionResults
-            let record = Record(date: Date(), totalQuestions: self.totalQuestions, answerQuestions: self.answerQuestions)
+        if let gameSessionResults = gameSession {
+            self.answerQuestions = gameSessionResults.results
+            let record = Record(date: Date(), totalQuestions: self.totalQuestions, answerQuestions: self.answerQuestions, gameResults: gameSessionResults.gameResults)
             addRecord(record)
             careTaker.saveGame(records: records)
             

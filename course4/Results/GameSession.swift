@@ -8,16 +8,19 @@
 import UIKit
 
 protocol GameSessionDelegate: AnyObject {
-    func addResult(_ date: Date, _ value: Int)
+    func addResult(_ question: Int, _ value: Int)
 }
 
 class GameSession {
     var results: Int = 0
+    var gameResults: [GameResults] = []
 }
 
 extension GameSession: GameSessionDelegate {
 
-    func addResult(_ date: Date, _ value: Int) {
+    func addResult(_ question: Int, _ value: Int) {
+        let record = GameResults(question: question, value: value)
+        gameResults.append(record)
         self.results += 1
     }
     

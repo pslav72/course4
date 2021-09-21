@@ -91,7 +91,7 @@ class GameViewController: UIViewController {
                 didEndGame = false
                 clearRadioButtoms()
                 questionIndex += 1
-                self.gameSessionDelegate?.addResult(Date(), 1)
+                self.gameSessionDelegate?.addResult(questionIndex, 1)
                 if questionIndex <= question.count - 1 {
                     showQuestion(questionIndex)
                 } else {
