@@ -19,6 +19,8 @@ class Game {
     private(set) var totalQuestions: Int = 0
     private(set) var answerQuestions: Int = 0
     private(set) var records: [Record] = []
+    private(set) var difficulty: Difficulty = .normal
+    
     private let careTaker = CareTaker()
     
     var gameSession: GameSession?
@@ -51,6 +53,10 @@ class Game {
     func clearRecord() {
         self.records = []
         answerQuestions = 0
+    }
+    
+    func setDifficulty(_ value: Difficulty) {
+        self.difficulty = value
     }
 
 }

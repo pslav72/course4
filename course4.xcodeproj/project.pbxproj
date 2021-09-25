@@ -20,6 +20,14 @@
 		D121C26726E13A44002D7626 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D121C26626E13A44002D7626 /* Game.swift */; };
 		D121C26A26E13CBB002D7626 /* RecordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D121C26926E13CBB002D7626 /* RecordsViewController.swift */; };
 		D121C26D26E67604002D7626 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D121C26C26E67604002D7626 /* GameSession.swift */; };
+		D149519726FDC2A90024AF67 /* CheckValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149519626FDC2A90024AF67 /* CheckValue.swift */; };
+		D149519926FE380B0024AF67 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149519826FE380B0024AF67 /* AlertView.swift */; };
+		D149519C26FE3F6B0024AF67 /* DictionaryQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149519B26FE3F6B0024AF67 /* DictionaryQuestions.swift */; };
+		D15796D226FCCDFD00179E5F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15796D126FCCDFD00179E5F /* SettingsViewController.swift */; };
+		D15796D426FCD10900179E5F /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15796D326FCD10900179E5F /* Difficulty.swift */; };
+		D15796D826FCE0C900179E5F /* ObservableOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15796D726FCE0C900179E5F /* ObservableOptions.swift */; };
+		D15796DA26FCE0EB00179E5F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15796D926FCE0EB00179E5F /* Observable.swift */; };
+		D15796DC26FCE91600179E5F /* AddQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15796DB26FCE91600179E5F /* AddQuestionViewController.swift */; };
 		D1E7887D26F8C6E200CFE205 /* CareTaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E7887C26F8C6E200CFE205 /* CareTaker.swift */; };
 		D1FD070F26F8F1830072E82A /* GameResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FD070E26F8F1830072E82A /* GameResults.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +48,14 @@
 		D121C26626E13A44002D7626 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		D121C26926E13CBB002D7626 /* RecordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsViewController.swift; sourceTree = "<group>"; };
 		D121C26C26E67604002D7626 /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
+		D149519626FDC2A90024AF67 /* CheckValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckValue.swift; sourceTree = "<group>"; };
+		D149519826FE380B0024AF67 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		D149519B26FE3F6B0024AF67 /* DictionaryQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryQuestions.swift; sourceTree = "<group>"; };
+		D15796D126FCCDFD00179E5F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D15796D326FCD10900179E5F /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
+		D15796D726FCE0C900179E5F /* ObservableOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableOptions.swift; sourceTree = "<group>"; };
+		D15796D926FCE0EB00179E5F /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		D15796DB26FCE91600179E5F /* AddQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionViewController.swift; sourceTree = "<group>"; };
 		D1E7887C26F8C6E200CFE205 /* CareTaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareTaker.swift; sourceTree = "<group>"; };
 		D1FD070E26F8F1830072E82A /* GameResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,31 +90,33 @@
 		D110C62C26D9493B00AF0F74 /* course4 */ = {
 			isa = PBXGroup;
 			children = (
-				D1FD070D26F8F16D0072E82A /* Models */,
+				D149519A26FE3F380024AF67 /* Data */,
+				D15796D626FCE0A300179E5F /* Observer */,
+				D15796D526FCDCA800179E5F /* Views */,
 				D1E7887926F8C6A600CFE205 /* Momento */,
 				D121C26B26E675E2002D7626 /* Results */,
-				D121C26826E13C9A002D7626 /* Records */,
-				D121C25D26DA8D36002D7626 /* Model */,
+				D121C25D26DA8D36002D7626 /* Models */,
 				D110C62D26D9493B00AF0F74 /* AppDelegate.swift */,
 				D110C62F26D9493B00AF0F74 /* SceneDelegate.swift */,
-				D110C63126D9493B00AF0F74 /* ViewController.swift */,
 				D110C63326D9493B00AF0F74 /* Main.storyboard */,
 				D110C63926D9493F00AF0F74 /* Assets.xcassets */,
 				D110C63B26D9493F00AF0F74 /* LaunchScreen.storyboard */,
 				D110C63E26D9493F00AF0F74 /* Info.plist */,
 				D110C63626D9493B00AF0F74 /* course4.xcdatamodeld */,
-				D121C26026DA8E6D002D7626 /* GameViewController.swift */,
 				D121C26426DE9617002D7626 /* CheckBox.swift */,
+				D149519626FDC2A90024AF67 /* CheckValue.swift */,
 			);
 			path = course4;
 			sourceTree = "<group>";
 		};
-		D121C25D26DA8D36002D7626 /* Model */ = {
+		D121C25D26DA8D36002D7626 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D1FD070E26F8F1830072E82A /* GameResults.swift */,
 				D121C25E26DA8D4B002D7626 /* Question.swift */,
+				D15796D326FCD10900179E5F /* Difficulty.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		D121C26826E13C9A002D7626 /* Records */ = {
@@ -118,20 +136,42 @@
 			path = Results;
 			sourceTree = "<group>";
 		};
+		D149519A26FE3F380024AF67 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D149519B26FE3F6B0024AF67 /* DictionaryQuestions.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D15796D526FCDCA800179E5F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D121C26026DA8E6D002D7626 /* GameViewController.swift */,
+				D110C63126D9493B00AF0F74 /* ViewController.swift */,
+				D15796DB26FCE91600179E5F /* AddQuestionViewController.swift */,
+				D15796D126FCCDFD00179E5F /* SettingsViewController.swift */,
+				D121C26826E13C9A002D7626 /* Records */,
+				D149519826FE380B0024AF67 /* AlertView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D15796D626FCE0A300179E5F /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+				D15796D726FCE0C900179E5F /* ObservableOptions.swift */,
+				D15796D926FCE0EB00179E5F /* Observable.swift */,
+			);
+			path = Observer;
+			sourceTree = "<group>";
+		};
 		D1E7887926F8C6A600CFE205 /* Momento */ = {
 			isa = PBXGroup;
 			children = (
 				D1E7887C26F8C6E200CFE205 /* CareTaker.swift */,
 			);
 			path = Momento;
-			sourceTree = "<group>";
-		};
-		D1FD070D26F8F16D0072E82A /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				D1FD070E26F8F1830072E82A /* GameResults.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,8 +244,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D15796DA26FCE0EB00179E5F /* Observable.swift in Sources */,
+				D149519926FE380B0024AF67 /* AlertView.swift in Sources */,
 				D1FD070F26F8F1830072E82A /* GameResults.swift in Sources */,
 				D1E7887D26F8C6E200CFE205 /* CareTaker.swift in Sources */,
+				D15796D426FCD10900179E5F /* Difficulty.swift in Sources */,
+				D15796D826FCE0C900179E5F /* ObservableOptions.swift in Sources */,
 				D121C25F26DA8D4B002D7626 /* Question.swift in Sources */,
 				D110C63226D9493B00AF0F74 /* ViewController.swift in Sources */,
 				D121C26D26E67604002D7626 /* GameSession.swift in Sources */,
@@ -213,9 +257,13 @@
 				D121C26126DA8E6D002D7626 /* GameViewController.swift in Sources */,
 				D121C26526DE9617002D7626 /* CheckBox.swift in Sources */,
 				D110C63826D9493B00AF0F74 /* course4.xcdatamodeld in Sources */,
+				D149519C26FE3F6B0024AF67 /* DictionaryQuestions.swift in Sources */,
 				D110C62E26D9493B00AF0F74 /* AppDelegate.swift in Sources */,
+				D15796D226FCCDFD00179E5F /* SettingsViewController.swift in Sources */,
 				D110C63026D9493B00AF0F74 /* SceneDelegate.swift in Sources */,
 				D121C26726E13A44002D7626 /* Game.swift in Sources */,
+				D149519726FDC2A90024AF67 /* CheckValue.swift in Sources */,
+				D15796DC26FCE91600179E5F /* AddQuestionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

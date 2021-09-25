@@ -7,51 +7,27 @@
 
 import UIKit
 
-//protocol QuestionViewDelegate: AnyObject {
-//    func addResult(_ date: Date, _ value: Int)
-//}
-//
 protocol QuestionViewResultDelegate: AnyObject {
     func didEndGame(_ scene: GameViewController, withResult result: Int)
 }
 
 class GameViewController: UIViewController {
+    
     let checkBox = CheckBox()
     let uncheckedImage = UIImage(systemName: "circle")
     var gameSession = GameSession()
+    private let careTaker = CareTaker()
+    private let dictionaryQuestions = DictionaryQuestions()
     
-//    weak var questionViewDelegate: QuestionViewDelegate?
     weak var questionViewResultDelegate: QuestionViewResultDelegate?
     
     weak var gameSessionDelegate: GameSessionDelegate?
     
     private var didEndGame: Bool = true
     
-    var question: [Question] = [
-        Question(question: "Сколько 2+2",
-                 answer: [
-                    Answer(variant: "1", correct: false),
-                    Answer(variant: "3", correct: false),
-                    Answer(variant: "4", correct: true),
-                    Answer(variant: "5", correct: false),
-                 ]),
-        Question(question: "Сколько 2+1",
-                 answer: [
-                    Answer(variant: "1", correct: false),
-                    Answer(variant: "3", correct: true),
-                    Answer(variant: "4", correct: false),
-                    Answer(variant: "5", correct: false),
-                 ]),
-        Question(question: "Сколько 2+5",
-                 answer: [
-                    Answer(variant: "1", correct: false),
-                    Answer(variant: "3", correct: false),
-                    Answer(variant: "7", correct: true),
-                    Answer(variant: "5", correct: false),
-                 ])
-    ]
+    var questions: [Question] = []
     
-    var questionIndex: Int = 0
+    var questionIndex = Observable<Int>(0)
     
     @IBOutlet weak var answerRadioButtom1: CheckBox!
     @IBOutlet weak var answerRadioButtom2: CheckBox!
@@ -80,20 +56,21 @@ class GameViewController: UIViewController {
     }
     
     
+    @IBOutlet weak var headerLabal: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answerButtom: UIButton!
     
     
     @IBAction func answerButtonTouchDown(_ sender: Any) {
         didEndGame = true
-        zip(answerRadioButtoms, question[questionIndex].answer).forEach{
+        zip(answerRadioButtoms, questions[questionIndex.value].answer).forEach{
             if $0.isSelected, $1.correct {
                 didEndGame = false
                 clearRadioButtoms()
-                questionIndex += 1
-                self.gameSessionDelegate?.addResult(questionIndex, 1)
-                if questionIndex <= question.count - 1 {
-                    showQuestion(questionIndex)
+                questionIndex.value += 1
+                self.gameSessionDelegate?.addResult(questionIndex.value, 1)
+                if questionIndex.value <= questions.count - 1 {
+                    showQuestion(questionIndex.value)
                 } else {
                     endGame()
                 }
@@ -106,23 +83,39 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        questions = dictionaryQuestions.putQuestions()
+        
+        if let loadQuestions = careTaker.loadQuestions() {
+            questions += loadQuestions
+        }
+        
+        print("Begin game, use difficulty \(Game.shared.difficulty)")
+        if Game.shared.difficulty == .hard {
+            self.questions = questions.shuffled()
+        }
+        
+        questionIndex.addObserver(self, options: [.initial, .new]) { value, _ in
+            self.headerLabal.text = "Вопрос: \(value+1)/\(self.questions.count)."
+        }
+        
         self.answerLabels = [self.answerLabel1, self.answerLabel2, self.answerLabel3, self.answerLabel4]
         self.answerRadioButtoms = [self.answerRadioButtom1,self.answerRadioButtom2,self.answerRadioButtom3,self.answerRadioButtom4]
         answerRadioButtom1.alternateButton = [answerRadioButtom2!,answerRadioButtom3!,answerRadioButtom4!]
         answerRadioButtom2.alternateButton = [answerRadioButtom1!,answerRadioButtom3!,answerRadioButtom4!]
         answerRadioButtom3.alternateButton = [answerRadioButtom1!,answerRadioButtom2!,answerRadioButtom4!]
         answerRadioButtom4.alternateButton = [answerRadioButtom1!,answerRadioButtom2!,answerRadioButtom3!]
-        showQuestion(questionIndex)
+        showQuestion(questionIndex.value)
         gameSessionDelegate = gameSession
         Game.shared.gameSession = gameSession
-        gameSession.beginGame(totalQuestions: question.count)
+        gameSession.beginGame(totalQuestions: questions.count)
     }
     
     private func showQuestion(_ index: Int) {
-        questionLabel.text = question[index].question
-        let countAnswer = question[index].answer.count - 1
+        questionLabel.text = questions[index].question
+        let countAnswer = questions[index].answer.count - 1
         (0...countAnswer).forEach { indexAnswer in
-            answerLabels[indexAnswer].text = question[index].answer[indexAnswer].variant
+            answerLabels[indexAnswer].text = questions[index].answer[indexAnswer].variant
         }
     }
     
@@ -134,7 +127,7 @@ class GameViewController: UIViewController {
     
     private func endGame() {
         gameSession.endGame()
-        self.questionViewResultDelegate?.didEndGame(self, withResult: questionIndex)
+        self.questionViewResultDelegate?.didEndGame(self, withResult: questionIndex.value)
         self.dismiss(animated: true, completion: nil)
     }
     
